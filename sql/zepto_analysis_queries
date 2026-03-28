@@ -1,0 +1,38 @@
+-- Create Database
+CREATE DATABASE zepto_project;
+
+-- Use Database
+USE zepto_project;
+
+-- View Creation
+CREATE OR REPLACE VIEW zepto_analysis AS
+SELECT *
+FROM zepto_v2;
+
+-- 1. Products by Category
+SELECT category, COUNT(*) AS total_products
+FROM zepto_analysis
+GROUP BY category
+ORDER BY total_products DESC;
+
+-- 2. Stock-out % by Category
+SELECT category,
+       (SUM(is_out_of_stock) / COUNT(*)) * 100 AS stock_out_percent
+FROM zepto_analysis
+GROUP BY category;
+
+-- 3. Avg Price by Category
+SELECT category, AVG(selling_price_rs) AS avg_price
+FROM zepto_analysis
+GROUP BY category;
+
+-- 4. Avg Discount by Category
+SELECT category, AVG(discount_value_rs) AS avg_discount
+FROM zepto_analysis
+GROUP BY category;
+
+-- 5. Stock-out % by Price Segment
+SELECT price_segment,
+       (SUM(is_out_of_stock) / COUNT(*)) * 100 AS stock_out_percent
+FROM zepto_analysis
+GROUP BY price_segment;
