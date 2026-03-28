@@ -18,5 +18,14 @@ Total Products
 Average Price
 Stock-Out Percentage
 
+
+SQL was used for:
+- Data cleaning and transformation
+- Creating analytical views
+- Performing category and segment-level analysis
+
+Queries available in:
+`sql/zepto_analysis_queries.sql`
+
 Author 
 Aditi Singh
